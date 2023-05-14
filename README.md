@@ -1,2 +1,2 @@
-# tailwind-pie-chart
-A React Pie Chart component made with tailwind-css
+# react-progress-pie
+A React Progress pie-bar component made with tailwind-css
