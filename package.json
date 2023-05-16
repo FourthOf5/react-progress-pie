@@ -1,0 +1,37 @@
+{
+  "name": "react-progress-pie",
+  "version": "1.0.0",
+  "description": "A React Progress pie-bar component made with tailwind-css",
+  "main": "index.ts",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FourthOf5/react-progress-pie.git"
+  },
+  "keywords": [
+    "progress-bar",
+    "react",
+    "tailwind-css"
+  ],
+  "author": "Filip Guerrero Mengana (github.com/FourthOf5)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FourthOf5/react-progress-pie/issues"
+  },
+  "homepage": "https://github.com/FourthOf5/react-progress-pie#readme",
+  "dependencies": {
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "prettier": "^2.8.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.62.1",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.0.4"
+  }
+}
