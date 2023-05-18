@@ -5,10 +5,10 @@
     },
     "extends": [
         "airbnb-typescript",
-        "prettier"
+        "prettier",
+        "plugin:storybook/recommended"
     ],
-    "overrides": [
-    ],
+    "overrides": [],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "project": "./tsconfig.json"
@@ -18,6 +18,5 @@
         "@typescript-eslint",
         "import"
     ],
-    "rules": {
-    }
+    "rules": {}
 }
