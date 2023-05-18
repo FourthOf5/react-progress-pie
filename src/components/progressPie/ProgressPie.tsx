@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './progressPie.scss';
 
 const calcPercentage = (partialValue: number, totalValue: number) =>
-  (100 * partialValue) / totalValue;
+  Math.round((100 * partialValue) / totalValue);
 
 interface ProgressPieProps {
   /**
@@ -24,19 +24,17 @@ export const ProgressPie = (props: ProgressPieProps) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // eslint-disable-next-line no-debugger
-    debugger;
     if (!currentProgressValue) {
       setProgress(0);
       return;
     }
-    setProgress(calcPercentage(hundredPercentEquiv || 100, currentProgressValue));
+    setProgress(calcPercentage(currentProgressValue, hundredPercentEquiv || 100));
   }, [currentProgressValue, hundredPercentEquiv]);
 
   return (
     <div className="container w-[300px] h-[300px]">
-      <div className="c100 p10 blue">
-        <span>10%</span>
+      <div className={`c100 p${progress} blue`}>
+        <span>{progress}%</span>
         <div className="slice">
           <div className="bar"></div>
           <div className="fill"></div>
