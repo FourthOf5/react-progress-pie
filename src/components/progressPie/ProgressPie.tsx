@@ -32,7 +32,7 @@ export const ProgressPie = (props: ProgressPieProps) => {
   }, [currentProgressValue, hundredPercentEquiv]);
 
   return (
-    <div className="container w-[300px] h-[300px]">
+    <div className="w-[300px] h-[300px]">
       <div className={`c100 p${progress} blue`}>
         <span>{progress}%</span>
         <div className="slice">

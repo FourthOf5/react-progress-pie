@@ -32,9 +32,9 @@ $primary-color-span: #3c4761;
 .pie-fill {
   transform: rotate(180deg);
 }
-.wrapper {
-  width: 1200px;
-  margin: 0 auto;
+
+.container {
+  @apply w-[300px] h-[300px];
 }
 
 // main
@@ -46,12 +46,11 @@ $primary-color-span: #3c4761;
   }
 
   position: relative;
-  font-size: 160px;
-  width: 1em;
-  height: 1em;
+  font-size: 300px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   float: left;
-  margin: 0.4em;
   background-color: $secondary-color;
 
   // 	// center circle to its parent

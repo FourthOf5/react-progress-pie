@@ -12,6 +12,7 @@ const config: StorybookConfig = {
           // Require your Sass preprocessor here
           implementation: require('sass'),
         },
+        postCss: true,
       },
     },
   ],
