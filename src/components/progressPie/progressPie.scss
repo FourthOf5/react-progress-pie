@@ -21,7 +21,8 @@ $primary-color-span: #3c4761;
 
 .pie {
   position: absolute;
-  border: $circle-width solid $primary-color;
+  border-width: $circle-width;
+  border-style: solid;
   width: 1 - (2 * $circle-width);
   height: 1 - (2 * $circle-width);
   clip: rect(0em, 0.5em, 1em, 0em);
@@ -51,7 +52,6 @@ $primary-color-span: #3c4761;
   height: 100%;
   border-radius: 50%;
   float: left;
-  background-color: $secondary-color;
 
   // 	// center circle to its parent
   // 	&.center{
@@ -138,30 +138,6 @@ $primary-color-span: #3c4761;
     .bar,
     .fill {
       border-color: $primary-color-blue !important;
-    }
-  }
-
-  // pink skin
-  &.pink {
-    .bar,
-    .fill {
-      border-color: $primary-color-pink !important;
-    }
-  }
-
-  // green skin
-  &.green {
-    .bar,
-    .fill {
-      border-color: $primary-color-green !important;
-    }
-  }
-
-  // orange skin
-  &.orange {
-    .bar,
-    .fill {
-      border-color: $primary-color-orange !important;
     }
   }
 }
