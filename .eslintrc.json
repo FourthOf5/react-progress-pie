@@ -1,9 +1,11 @@
 {
+    "root": true,
     "env": {
         "browser": true,
         "es2021": true
     },
     "extends": [
+        "airbnb",
         "airbnb-typescript",
         "prettier",
         "plugin:storybook/recommended"
