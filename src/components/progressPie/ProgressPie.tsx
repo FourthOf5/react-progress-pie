@@ -7,6 +7,7 @@ const calcPercentage = (partialValue: number, totalValue: number) =>
 export interface ProgressPieConfig {
   barColorBackground: string;
   progressBarBorderColor: string;
+  width?: number;
 }
 
 export const defaultProgressPieConfig: ProgressPieConfig = {
@@ -57,8 +58,8 @@ function ProgressPie(props: ProgressPieProps) {
   }, [config]);
 
   return (
-    <div className="w-[300px] h-[300px]">
-      <div className={`c100 p${progress} ${config?.barColorBackground}`}>
+    <div style={{ width: config?.width || 300, height: config?.width || 300 }}>
+      <div className={`c100 p${progress} ${config?.barColorBackground} w-full h-full`}>
         <span>{progress}%</span>
         <div className="slice">
           <div className={`bar ${pieChartConfig.progressBarBorderColor} border-amber-400`} />

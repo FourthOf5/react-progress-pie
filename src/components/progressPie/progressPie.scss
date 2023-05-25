@@ -1,5 +1,5 @@
 // VARS
-$circle-width: 0.09em;
+$circle-width: 20px;
 
 // colors default
 $primary-color: #000000; // czarny
@@ -13,19 +13,14 @@ $primary-color-orange: #eb7d4b;
 $primary-color-pink: #d74680;
 $primary-color-span: #3c4761;
 
-// CIRCLE
-// classes 2 extend
-.rectAuto {
-  clip: rect(auto, auto, auto, auto);
-}
-
 .pie {
   position: absolute;
   border-width: $circle-width;
   border-style: solid;
-  width: 1 - (2 * $circle-width);
-  height: 1 - (2 * $circle-width);
-  clip: rect(0em, 0.5em, 1em, 0em);
+  width: calc(100% - (2 * $circle-width));
+  height: calc(100% - (2 * $circle-width));
+  clip-path: inset(0% 50% 0% 0%);
+
   border-radius: 50%;
   transform: rotate(0deg);
 }
@@ -48,8 +43,6 @@ $primary-color-span: #3c4761;
 
   position: relative;
   font-size: 300px;
-  width: 100%;
-  height: 100%;
   border-radius: 50%;
   float: left;
 
@@ -66,19 +59,17 @@ $primary-color-span: #3c4761;
   // centered value inside circle
   > span {
     position: absolute;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     top: 0;
-    width: 5em;
-    line-height: 5em;
-    font-size: 0.2em;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
     color: $primary-color-span;
-    display: block;
-    text-align: center;
     white-space: nowrap;
-    transition-property: all;
-    transition-duration: 0.2s;
-    transition-timing-function: ease-out;
   }
 
   // background inside the circle
@@ -90,8 +81,9 @@ $primary-color-span: #3c4761;
     content: ' ';
     border-radius: 50%;
     background-color: $bg-color;
-    width: 1 - (2 * $circle-width);
-    height: 1 - (2 * $circle-width);
+    //width: 1 - (2 * $circle-width);
+    width: calc(100% - 2 * $circle-width);
+    height: calc(100% - 2 * $circle-width);
     transition-property: all;
     transition-duration: 0.2s;
     transition-timing-function: ease-in;
@@ -100,9 +92,9 @@ $primary-color-span: #3c4761;
   // the slice (mask)
   .slice {
     position: absolute;
-    width: 1em;
-    height: 1em;
-    clip: rect(0em, 1em, 1em, 0.5em);
+    width: 100%;
+    height: 100%;
+    clip-path: inset(0% 0% 0% 50%);
   }
 
   // circle to show the status
@@ -113,7 +105,7 @@ $primary-color-span: #3c4761;
   // loop to create all needed elements automatically
   @for $j from 51 through 100 {
     &.p#{$j} .slice {
-      @extend .rectAuto;
+      clip-path: inset(0% 0% 0% 0%);
     }
 
     &.p#{$j} .bar:after {
@@ -130,14 +122,6 @@ $primary-color-span: #3c4761;
   @for $j from 1 through 100 {
     &.p#{$j} .bar {
       transform: rotate((360/100 * $j) + deg);
-    }
-  }
-
-  // blue
-  &.blue {
-    .bar,
-    .fill {
-      border-color: $primary-color-blue !important;
     }
   }
 }

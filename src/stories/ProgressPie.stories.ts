@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ProgressPie } from '../components/progressPie/ProgressPie';
+import ProgressPie from '../components/progressPie/ProgressPie';
 
 // 👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof ProgressPie> = {
@@ -16,14 +16,14 @@ const meta: Meta<typeof ProgressPie> = {
 export default meta;
 type Story = StoryObj<typeof ProgressPie>;
 
-export const FirstStory: Story = {
+export const BasicChart: Story = {
   args: {
     currentProgressValue: 15,
     hundredPercentEquiv: 100,
     config: {
       barColorBackground: 'bg-gray-200',
-      progressBarBorderColor: 'border-lime-500',
+      progressBarBorderColor: 'border-pink-500',
+      width: 350,
     },
-    // 👇 The args you need here will depend on your component
   },
 };
