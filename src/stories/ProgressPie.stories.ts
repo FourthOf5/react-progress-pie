@@ -23,7 +23,22 @@ export const BasicChart: Story = {
     config: {
       barColorBackground: 'bg-gray-200',
       progressBarBorderColor: 'border-pink-500',
-      width: 350,
+      progressBarOverflowBorderColor: 'border-pink-700',
+
+      width: 300,
+    },
+  },
+};
+
+export const ProgressOver100Percent: Story = {
+  args: {
+    currentProgressValue: 156,
+    hundredPercentEquiv: 100,
+    config: {
+      barColorBackground: 'bg-gray-200',
+      progressBarBorderColor: 'border-green-400',
+      progressBarOverflowBorderColor: 'border-green-600',
+      width: 300,
     },
   },
 };
