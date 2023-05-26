@@ -67,7 +67,7 @@ $primary-color-span: #3c4761;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 32px;
     color: $primary-color-span;
     white-space: nowrap;
   }
@@ -124,7 +124,45 @@ $primary-color-span: #3c4761;
       transform: rotate((360/100 * $j) + deg);
     }
   }
+
+  // CIRCLE TO SHOW OVERFLOW PROGRESS
+
+  .slice-overflow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip-path: inset(0% 0% 0% 50%);
+  }
+
+  // circle to show the status
+  .bar-overflow {
+    @extend .pie;
+  }
+
+  // loop to create all needed elements automatically for orverflow
+  @for $k from 51 through 100 {
+    &.o#{$k} .slice-overflow {
+      clip-path: inset(0% 0% 0% 0%);
+    }
+
+    &.o#{$k} .bar-overflow:after {
+      @extend .pie-fill;
+    }
+
+    &.o#{$k} .fill-overflow {
+      @extend .pie;
+      @extend .pie-fill;
+    }
+  }
+
+  // loop to rotate all 100 circles
+  @for $k from 1 through 100 {
+    &.o#{$k} .bar-overflow {
+      transform: rotate((360/100 * $k) + deg);
+    }
+  }
 }
+
 
 //.circleWrap {
 //  margin: 50px auto;
