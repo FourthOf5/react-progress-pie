@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import ProgressPie from '../components/progressPie/ProgressPie';
@@ -50,10 +51,51 @@ export const ProgressPieWithActualValuesAsLabel: Story = {
   args: {
     currentProgressValue: 75,
     hundredPercentEquiv: 256,
-    label: 'actualValues',
+    labelType: 'actualValues',
     config: {
       barColorBackground: 'bg-gray-200',
       progressBarBorderColor: 'border-orange-400',
+      progressBarOverflowBorderColor: 'border-orange-600',
+      labelColor: 'text-orange-500',
+      labelFontSize: 'text-4xl',
+      width: 250,
+      displayMaxValueLabel: true,
+      maxValueLabelColor: 'text-gray-400',
+      maxValueLabelFontSize: 'text-2xl',
+      progressMeasurement: 'kg',
+      displayMeasurementInMaxValue: true,
+    },
+  },
+};
+
+function CustomLabelComponent() {
+  const buttonClickedHandler = () => {
+    alert('Button clicked!');
+  };
+
+  return (
+    <div className="flex flex-col justify-center items-center font-semibold">
+      <span className="text-4xl">75</span>
+      <button
+        className="outline-none border rounded-md border-violet-400 px-2 py-1"
+        type="button"
+        onClick={buttonClickedHandler}
+      >
+        Click me
+      </button>
+    </div>
+  );
+}
+
+export const ProgressPieWithCustomLabelComponent: Story = {
+  args: {
+    currentProgressValue: 75,
+    hundredPercentEquiv: 256,
+    labelType: 'customElement',
+    customLabelComponent: <CustomLabelComponent />,
+    config: {
+      barColorBackground: 'bg-gray-200',
+      progressBarBorderColor: 'border-violet-400',
       progressBarOverflowBorderColor: 'border-orange-600',
       labelColor: 'text-orange-500',
       labelFontSize: 'text-4xl',

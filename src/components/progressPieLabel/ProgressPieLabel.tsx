@@ -3,15 +3,45 @@ import React, { useEffect, useState } from 'react';
 import { ProgressPieConfig, ProgressPieLabelType } from '../../types';
 import calculatePercentage from '../../utils/percentageCalcucator';
 
-interface ProgressPieLabelProps {
-  label?: ProgressPieLabelType;
+export interface ProgressPieLabelProps {
+  /**
+   * a number that represents a 100% value (100 by default)?
+   */
   hundredPercentEquiv: number | null | undefined;
+  /**
+   * a number that represents current progress (0 by default)
+   */
   currentProgressValue: number | null | undefined;
-  config: ProgressPieConfig;
+  /**
+   * label that displays information:
+   * - percentages (default) - will display progress in percentage equivalent: "23%"
+   * - actualValues - will display the actual numbers: "23/100"
+   * - custom - will render custom JSX component
+   */
+  labelType?: ProgressPieLabelType;
+  /**
+   * A custom component to be displayed as a label.
+   *
+   * Important: will be displayed only if label prop set to 'custom'
+   */
+  customLabelComponent?: React.ReactNode;
+  /**
+   * a style configuration for progress-pie-chart.
+   * Notice: intended to be used with tailwind classes.
+   * Tailwind generates a CSS file containing only the classes used in your project.
+   * It can't recognise the dynamically generated class name you're using so doesn't include it in the output file.
+   */
+  config: Partial<ProgressPieConfig> | null;
 }
 
 function ProgressPieLabel(props: ProgressPieLabelProps) {
-  const { label = 'percentages', hundredPercentEquiv, currentProgressValue, config } = props;
+  const {
+    labelType = 'percentages',
+    customLabelComponent,
+    hundredPercentEquiv,
+    currentProgressValue,
+    config,
+  } = props;
 
   const [progressPercentage, setProgressPercentage] = useState(0);
 
@@ -29,39 +59,40 @@ function ProgressPieLabel(props: ProgressPieLabelProps) {
 
   return (
     <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center">
-      {label === 'percentages' && (
+      {labelType === 'percentages' && (
         <span
-          className={`${config.labelFontSize || 'text-3xl'} ${
-            config.labelColor || 'text-gray-500'
-          } ${config.labelFontWeight || 'font-semibold'}`}
+          className={`${config?.labelFontSize || 'text-3xl'} ${
+            config?.labelColor || 'text-gray-500'
+          } ${config?.labelFontWeight || 'font-semibold'}`}
         >
           {progressPercentage}%
         </span>
       )}
-      {label === 'actualValues' && (
+      {labelType === 'actualValues' && (
         <div
-          className={`${config.labelFontSize || 'text-3xl'} ${
-            config.labelColor || 'text-gray-500'
-          } ${config.labelFontWeight || 'font-semibold'} flex items-center justify-center flex-col`}
+          className={`${config?.labelFontSize || 'text-3xl'} ${
+            config?.labelColor || 'text-gray-500'
+          } ${
+            config?.labelFontWeight || 'font-semibold'
+          } flex items-center justify-center flex-col`}
         >
           <span>
             {currentProgressValue}
-            {(!config.displayMeasurementInMaxValue && config.progressMeasurement) || ''}
+            {(!config?.displayMeasurementInMaxValue && config?.progressMeasurement) || ''}
           </span>
-          {config.displayMaxValueLabel ? (
+          {config?.displayMaxValueLabel && (
             <span
-              className={`${config.maxValueLabelColor || config.labelColor || 'text-gray-500'} ${
-                config.maxValueLabelFontSize || 'text-xl'
-              } ${config.maxValueLabelFontWeight || 'font-normal'}`}
+              className={`${config?.maxValueLabelColor || config?.labelColor || 'text-gray-500'} ${
+                config?.maxValueLabelFontSize || 'text-xl'
+              } ${config?.maxValueLabelFontWeight || 'font-normal'}`}
             >
               /{hundredPercentEquiv}
-              {(config?.displayMeasurementInMaxValue && config.progressMeasurement) || ''}
+              {(config?.displayMeasurementInMaxValue && config?.progressMeasurement) || ''}
             </span>
-          ) : (
-            ''
           )}
         </div>
       )}
+      {labelType === 'customElement' && !!customLabelComponent && customLabelComponent}
     </div>
   );
 }

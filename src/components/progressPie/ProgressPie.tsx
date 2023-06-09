@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { ProgressPieConfig, ProgressPieLabelType } from '../../types';
+import { ProgressPieConfig } from '../../types';
 import calculatePercentage from '../../utils/percentageCalcucator';
-import ProgressPieLabel from '../progressPieLabel/ProgressPieLabel';
+import ProgressPieLabel, { ProgressPieLabelProps } from '../progressPieLabel/ProgressPieLabel';
 
 import './progressPie.scss';
 
@@ -15,36 +15,17 @@ export const defaultProgressPieConfig: ProgressPieConfig = {
   labelFontWeight: 'font-semibold',
 };
 
-interface ProgressPieProps {
-  /**
-   * a number that represents a 100% value (100 by default)?
-   */
-  hundredPercentEquiv: number | null | undefined;
-  /**
-   * a number that represents current progress (0 by default)
-   */
-  currentProgressValue: number | null | undefined;
-  /**
-   * label that displays information:
-   * - percentages (default) - will display progress in percentage equivalent: "23%"
-   * - actualValues - will display the actual numbers: "23/100"
-   * - custom - will render custom JSX component
-   */
-  label?: ProgressPieLabelType;
-  /**
-   * a style configuration for progress-pie-chart.
-   * Notice: intended to be used with tailwind classes.
-   * Tailwind generates a CSS file containing only the classes used in your project.
-   * It can't recognise the dynamically generated class name you're using so doesn't include it in the output file.
-   */
-  config: Partial<ProgressPieConfig> | null;
-}
-
 /**
  * Progress-pie component for creating progress bars in circular fashion.
  */
-function ProgressPie(props: ProgressPieProps) {
-  const { hundredPercentEquiv = 100, currentProgressValue, label, config } = props;
+function ProgressPie(props: ProgressPieLabelProps) {
+  const {
+    hundredPercentEquiv = 100,
+    currentProgressValue,
+    labelType,
+    config,
+    customLabelComponent,
+  } = props;
 
   const [progress, setProgress] = useState(0);
   const [progressOverHundred, setProgressOverHundred] = useState(0);
@@ -94,7 +75,8 @@ function ProgressPie(props: ProgressPieProps) {
         </div>
       </div>
       <ProgressPieLabel
-        label={label}
+        labelType={labelType}
+        customLabelComponent={customLabelComponent}
         currentProgressValue={currentProgressValue}
         hundredPercentEquiv={hundredPercentEquiv}
         config={pieChartConfig}
