@@ -24,8 +24,9 @@ export const BasicChart: Story = {
       barColorBackground: 'bg-gray-200',
       progressBarBorderColor: 'border-pink-500',
       progressBarOverflowBorderColor: 'border-pink-700',
-
-      width: 300,
+      labelColor: 'text-pink-600',
+      labelFontSize: 'text-4xl',
+      width: 250,
     },
   },
 };
@@ -38,7 +39,30 @@ export const ProgressOver100Percent: Story = {
       barColorBackground: 'bg-gray-200',
       progressBarBorderColor: 'border-green-400',
       progressBarOverflowBorderColor: 'border-green-600',
-      width: 300,
+      labelColor: 'text-green-500',
+      labelFontSize: 'text-4xl',
+      width: 250,
+    },
+  },
+};
+
+export const ProgressPieWithActualValuesAsLabel: Story = {
+  args: {
+    currentProgressValue: 75,
+    hundredPercentEquiv: 256,
+    label: 'actualValues',
+    config: {
+      barColorBackground: 'bg-gray-200',
+      progressBarBorderColor: 'border-orange-400',
+      progressBarOverflowBorderColor: 'border-orange-600',
+      labelColor: 'text-orange-500',
+      labelFontSize: 'text-4xl',
+      width: 250,
+      displayMaxValueLabel: true,
+      maxValueLabelColor: 'text-gray-400',
+      maxValueLabelFontSize: 'text-2xl',
+      progressMeasurement: 'kg',
+      displayMeasurementInMaxValue: true,
     },
   },
 };
