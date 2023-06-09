@@ -56,22 +56,6 @@ $primary-color-span: #3c4761;
   // 		font-size: 80px;
   // 	}
 
-  // centered value inside circle
-  > span {
-    position: absolute;
-    z-index: 10;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 32px;
-    color: $primary-color-span;
-    white-space: nowrap;
-  }
-
   // background inside the circle
   &:after {
     position: absolute;
